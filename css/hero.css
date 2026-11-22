@@ -1,0 +1,103 @@
+/* IBE MOTION · hero met dot-portret. Kleuren en fonts uit de huisstijl (rood #d2404c, Doto, Sora, Manrope, JetBrains Mono). */
+:root {
+  --bg: #070304;
+  --red: #e83442;
+  --accent: #d2404c;
+  --hi: #ffece4;
+  --text: #f3e9e6;
+  --muted: rgba(243, 233, 230, 0.62);
+  --line: rgba(255, 236, 228, 0.16);
+  --font: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Sora', 'Manrope', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-dot: 'Doto', 'JetBrains Mono', monospace;
+  --pad: clamp(16px, 2.6vw, 40px);
+  --p: 0; /* scrollvoortgang 0..1, gezet door hero.js */
+}
+
+* { box-sizing: border-box; }
+html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+html.intro-on { overflow: hidden; }
+body { margin: 0; font-family: var(--font); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+p { margin: 0; }
+
+/* ---------- Opening ---------- */
+.curtain { position: fixed; inset: 0; z-index: 50; background: #06070a; transform: translate3d(0, 0, 0); transition: transform 1350ms cubic-bezier(0.72, 0, 0.18, 1); will-change: transform; cursor: pointer; }
+.curtain canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.curtain.lift { transform: translate3d(0, -112%, 0); }
+.curtain.gone { display: none; }
+.curtain__edge { position: absolute; left: 0; right: 0; top: 100%; height: 12vh; pointer-events: none; }
+.curtain__edge i { position: absolute; left: 0; right: 0; height: 1px; background: var(--red); opacity: 0.9; }
+.curtain__edge i:nth-child(1) { top: 0; height: 2px; background: var(--hi); box-shadow: 0 0 18px 2px rgba(232, 52, 66, 0.9); }
+.curtain__edge i:nth-child(2) { top: 14px; opacity: 0.55; left: 6%; right: 0; }
+.curtain__edge i:nth-child(3) { top: 38px; opacity: 0.25; left: 0; right: 18%; }
+
+/* ---------- Podium ---------- */
+.stage { position: relative; height: 260vh; }
+.hero { cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; isolation: isolate; }
+
+.bg, .bg > div { position: absolute; inset: 0; }
+.bg { background: radial-gradient(120% 85% at 50% 62%, #5a0f19 0%, #2a070c 38%, #0d0406 72%, var(--bg) 100%); overflow: hidden; }
+.bg__beams { inset: -40% -30%; transform: rotate(-33deg); filter: blur(26px); opacity: 0.9; mix-blend-mode: screen;
+  background: linear-gradient(90deg, transparent 0 18%, rgba(255, 74, 88, 0.46) 24%, transparent 31%, transparent 40%, rgba(232, 52, 66, 0.30) 47%, rgba(255, 120, 110, 0.16) 52%, transparent 60%, transparent 70%, rgba(232, 52, 66, 0.26) 76%, transparent 84%);
+  animation: beams 16s ease-in-out infinite alternate; }
+.bg__mist { filter: blur(60px); mix-blend-mode: screen; }
+.bg__mist--a { background: radial-gradient(38% 34% at 28% 68%, rgba(210, 64, 76, 0.34), transparent 70%); animation: mist 22s ease-in-out infinite alternate; }
+.bg__mist--b { background: radial-gradient(34% 40% at 76% 34%, rgba(255, 96, 84, 0.20), transparent 70%); animation: mist 28s ease-in-out infinite alternate-reverse; }
+.bg__vignette { background: radial-gradient(90% 80% at 50% 50%, transparent 40%, rgba(4, 2, 3, 0.78) 100%), linear-gradient(180deg, rgba(4, 2, 3, 0.55) 0, transparent 22%, transparent 62%, rgba(4, 2, 3, 0.8) 100%); }
+@keyframes beams { from { transform: rotate(-33deg) translateX(-4%); opacity: 0.7; } to { transform: rotate(-31deg) translateX(5%); opacity: 1; } }
+@keyframes mist { from { transform: translate3d(-4%, 3%, 0) scale(1); } to { transform: translate3d(5%, -4%, 0) scale(1.15); } }
+
+.fx { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 1; }
+
+/* Alles op de hero komt in beeld zodra het doek omhoog gaat */
+.rise { opacity: 0; transform: translate3d(0, 26px, 0); transition: opacity 900ms ease, transform 1100ms cubic-bezier(0.2, 0.7, 0.1, 1); transition-delay: calc(650ms + var(--d, 0) * 110ms); }
+body.is-open .rise { opacity: 1; transform: none; }
+
+/* ---------- Navigatie ---------- */
+.nav { position: absolute; z-index: 3; top: 0; left: 0; right: 0; display: flex; align-items: center; padding: calc(var(--pad) * 0.7 + env(safe-area-inset-top)) var(--pad) 0; font-size: 13px; }
+.nav__brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 600; letter-spacing: 0.08em; font-size: 13px; }
+.nav__brand img { border-radius: 7px; display: block; }
+
+/* ---------- De twee woorden ---------- */
+.words { margin: 0; position: absolute; inset: 0; z-index: 2; pointer-events: none; font-weight: 400; }
+.word { position: absolute; font-family: var(--font-dot); font-weight: 900; font-size: clamp(30px, 5vw, 84px); line-height: 1; letter-spacing: 0.02em; color: var(--hi); text-shadow: 0 0 26px rgba(232, 52, 66, 0.55); }
+.word small { display: block; font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 10px; text-shadow: none; }
+.word--l { left: var(--pad); top: 40%; margin-left: calc(var(--p) * -30vw); }
+.word--r { right: var(--pad); top: 55%; text-align: right; margin-right: calc(var(--p) * -30vw); }
+.word--l, .word--r { filter: opacity(calc(1 - var(--p) * 3.2)); }
+
+/* ---------- Knop ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid var(--line); font-family: var(--font-display); font-size: 13.5px; font-weight: 500; color: var(--text); background: rgba(10, 4, 6, 0.35); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+.btn--solid { background: var(--accent); border-color: var(--accent); color: #fff; }
+@media (hover: hover) {
+  .btn:hover { border-color: var(--hi); transform: translateY(-1px); }
+  .btn--solid:hover { background: var(--red); border-color: var(--red); }
+}
+
+.btn:focus-visible, .nav a:focus-visible { outline: 2px solid var(--hi); outline-offset: 3px; }
+
+/* ---------- Eindbeeld na scrollen: de leeuw ---------- */
+.end { position: absolute; z-index: 3; left: 0; right: 0; bottom: calc(9vh + env(safe-area-inset-bottom)); display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; padding: 0 var(--pad); opacity: var(--end, 0); transform: translate3d(0, calc((1 - var(--end, 0)) * 30px), 0); pointer-events: none; }
+.end.on { pointer-events: auto; }
+.end__name { font-family: var(--font-dot); font-weight: 900; font-size: clamp(30px, 4.4vw, 64px); letter-spacing: 0.06em; color: var(--hi); text-shadow: 0 0 26px rgba(232, 52, 66, 0.55); }
+.end__line { font-size: 15px; color: var(--muted); max-width: 420px; }
+
+/* ---------- Telefoon ---------- */
+@media (max-width: 760px) {
+  .word small { margin-bottom: 6px; font-size: 10px; }
+  .word { font-size: clamp(24px, 8.6vw, 44px); }
+  .word--l, .word--r { top: calc(12.5% + env(safe-area-inset-top)); }
+  .bg__vignette { background: radial-gradient(120% 70% at 50% 45%, transparent 40%, rgba(4, 2, 3, 0.7) 100%), linear-gradient(180deg, rgba(4, 2, 3, 0.55) 0, transparent 20%, transparent 52%, rgba(4, 2, 3, 0.92) 86%); }
+  .end { bottom: calc(12vh + env(safe-area-inset-bottom)); }
+}
+@media (max-height: 560px) and (min-width: 761px) {
+  .word { font-size: clamp(26px, 4vw, 48px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curtain { display: none; }
+  .rise { transition: none; opacity: 1; transform: none; }
+  .bg__beams, .bg__mist { animation: none; }
+}

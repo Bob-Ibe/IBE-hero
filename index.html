@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>IBE MOTION · Bob Ibe</title>
+  <meta name="description" content="IBE MOTION. Websites en AI.">
+  <meta name="theme-color" content="#070304">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=Manrope:wght@400;500;600&family=Doto:wght@700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/hero.css?v=4">
+</head>
+<body>
+
+  <!-- Opening: zwart doek met de leeuw, schuift daarna van onder naar boven weg -->
+  <div class="curtain" id="curtain" aria-hidden="true">
+    <canvas></canvas>
+    <div class="curtain__edge"><i></i><i></i><i></i></div>
+  </div>
+
+  <main class="stage" id="stage">
+    <section class="hero" id="hero">
+      <div class="bg" aria-hidden="true">
+        <div class="bg__beams"></div>
+        <div class="bg__mist bg__mist--a"></div>
+        <div class="bg__mist bg__mist--b"></div>
+        <div class="bg__vignette"></div>
+      </div>
+
+      <canvas class="fx" id="fx" aria-hidden="true"></canvas>
+
+      <header class="nav rise" style="--d:0">
+        <a class="nav__brand" href="#" aria-label="IBE MOTION">
+          <img src="assets/lion.png" alt="" width="26" height="26">
+          <span>IBE MOTION</span>
+        </a>
+      </header>
+
+      <h1 class="words">
+        <span class="word word--l rise" style="--d:1"><small>01</small>AI-WEBDEV</span>
+        <span class="word word--r rise" style="--d:2"><small>02</small>UX / UI</span>
+      </h1>
+
+
+      <div class="end" id="end">
+        <p class="end__name">IBE MOTION</p>
+        <p class="end__line">Websites en AI</p>
+        <a class="btn btn--solid" href="https://wa.me/31655116082?text=Hoi%20Bob%2C%20ik%20zag%20je%20site%20en%20ben%20benieuwd%20wat%20je%20voor%20mijn%20website%20kunt%20doen.%20Ik%20wil%20graag%20een%20nieuwe%20website%20laten%20maken%20of%20mijn%20huidige%20site%20laten%20verbeteren.%20Kunnen%20we%20even%20sparren%3F" target="_blank" rel="noopener">Plan een gesprek</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/lion-mask.js?v=1"></script>
+  <script src="js/portret-data.js?v=1"></script>
+  <script src="js/hero.js?v=4"></script>
+</body>
+</html>
